@@ -31,9 +31,4 @@ Create engaging and relevant podcast names to attract listeners.
 - **Gamertag Generator:** Generate awesome gamertags for Xbox, PlayStation, etc.
 - **Roblox Username Generator:** Find unique Roblox usernames.
 
-## How to Use
 
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/yourusername/name-generators.git
-   cd name-generators
