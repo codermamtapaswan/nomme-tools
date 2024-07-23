@@ -1,4 +1,5 @@
 <!-- source refernces
+https://namy.ai/
 https://github.com/designbycode/business-name-generator
 
 https://looka.com/business-name-generator/

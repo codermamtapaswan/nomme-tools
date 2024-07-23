@@ -1,3 +1,21 @@
+<!-- 
+https://github.com/search?q=username+generator++using+php&type=repositories
+https://github.com/marlongilette/Username-Generator
+https://github.com/Avitheus/genname
+https://github.com/taylornetwork/username-suggester
+https://github.com/taylornetwork/laravel-username-generator
+https://github.com/ziadoz/awesome-php
+
+https://kodesmart.com/kode/php-name-generator/
+
+https://stackoverflow.com/questions/28688442/how-to-generate-random-name-of-person-using-php
+https://www.spinxo.com/
+https://github.com/topics/username-generator
+
+https://www.hootsuite.com/social-media-tools/username-generator
+
+-->
+
 <!DOCTYPE html>
 <html>
 

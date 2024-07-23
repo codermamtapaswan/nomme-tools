@@ -2,17 +2,17 @@
 <html lang="en-US">
 
 <head>
-  <link rel="preload" href="/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-regular.woff2" fetchpriority="highest" as="font" crossorigin="">
-  <link rel="preload" href="/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-500.woff2" fetchpriority="highest" as="font" crossorigin="">
-  <link rel="preload" href="/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-600.woff2" fetchpriority="highest" as="font" crossorigin="">
-  <link rel="preload" href="/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-700.woff2" fetchpriority="highest" as="font" crossorigin="">
+  <link rel="preload" href="https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-regular.woff2" fetchpriority="highest" as="font" crossorigin="">
+  <link rel="preload" href="https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-500.woff2" fetchpriority="highest" as="font" crossorigin="">
+  <link rel="preload" href="https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-600.woff2" fetchpriority="highest" as="font" crossorigin="">
+  <link rel="preload" href="https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-700.woff2" fetchpriority="highest" as="font" crossorigin="">
   <style id="Nomme-fonts">
     @font-face {
       font-display: swap;
       font-family: "Poppins";
       font-style: normal;
       font-weight: 400;
-      src: url("/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-regular.woff2") format("woff2");
+      src: url("https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-regular.woff2") format("woff2");
     }
 
     @font-face {
@@ -20,7 +20,7 @@
       font-family: "Poppins";
       font-style: normal;
       font-weight: 500;
-      src: url("/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-500.woff2") format("woff2");
+      src: url("https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-500.woff2") format("woff2");
     }
 
     @font-face {
@@ -28,7 +28,7 @@
       font-family: "Poppins";
       font-style: normal;
       font-weight: 600;
-      src: url("/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-600.woff2") format("woff2");
+      src: url("https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-600.woff2") format("woff2");
     }
 
     @font-face {
@@ -36,7 +36,7 @@
       font-family: "Poppins";
       font-style: normal;
       font-weight: 700;
-      src: url("/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-700.woff2") format("woff2");
+      src: url("https://nomme.net/wp-content/themes/nomme.net/assets/frontend/fonts/poppins/poppins-v20-latin-700.woff2") format("woff2");
     }
   </style>
   <meta charset="UTF-8">
