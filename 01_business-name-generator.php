@@ -36,32 +36,38 @@ https://www.thesaurus.com/browse/repository
 
   <?php
 
-  // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  //   $keyword = htmlspecialchars($_POST['keyword']);
-  //   $suffixes = ['Tech', 'Solutions', 'Design', 'Studio', 'Works', 'Hub', 'Group'];
-  //   $names = [];
-
-  //   foreach ($suffixes as $suffix) {
-  //     $names[] = $keyword . ' ' . $suffix;
-  //     $names[] = $suffix . ' ' . $keyword;
-  //   }
-
-  //   echo "<h2>Generated Names:</h2><ul>";
-  //   foreach ($names as $name) {
-  //     echo "<li>" . $name . "</li>";
-  //   }
-  //   echo "</ul>";
-  // }
-
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $keywords = htmlspecialchars($_POST['keywords']);
     $keywordArray = explode(' ', $keywords);
-    $suffixes = [
-      'Tech', 'Solutions', 'Design', 'Studio', 'Works', 'Hub', 'Group'
-    ];
+    $suffixes = ['Tech', 'Solutions', 'Design', 'Studio', 'Works', 'Hub', 'Group'];
     $prefixes = ['Global', 'Innovative', 'NextGen', 'Elite', 'Prime'];
     $limit = (int)$_POST['number'];
     $generatedNames = [];
+
+     // Fetch synonyms using Datamuse API
+     function getSynonyms($word)
+     {
+         $url = "https://api.datamuse.com/words?ml=" . urlencode($word);
+         $response = @file_get_contents($url);
+         if ($response === FALSE) {
+             return [];
+         }
+         $data = json_decode($response, true);
+         $synonyms = [];
+         if (is_array($data)) {
+             foreach ($data as $item) {
+                 $synonyms[] = $item['word'];
+             }
+         }
+         return $synonyms;
+     }
+
+     // Generate creative names
+     $synonyms = getSynonyms( $keywords);
+     foreach ($synonyms as $syn) {
+             $generatedNames[] = $suffix . ' ' . $syn;
+             $generatedNames[] = $syn . ' ' . $suffix;
+     }
 
     // Generate two-word combinations
     foreach ($keywordArray as $keyword) {
@@ -74,9 +80,7 @@ https://www.thesaurus.com/browse/repository
     }
 
     // Capitalize names
-    foreach ($generatedNames as &$name) {
-      $name = ucfirst(strtolower($name));
-    }
+   
 
     // Ensure all names are unique and limit the number of names to generate
     $generatedNames = array_unique($generatedNames);
@@ -87,6 +91,7 @@ https://www.thesaurus.com/browse/repository
     echo "<ul>";
     foreach ($generatedNames as $name) {
       echo "<li>$name</li>";
+      
     }
     echo "</ul>";
   }

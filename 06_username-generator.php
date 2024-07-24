@@ -42,11 +42,23 @@ https://www.hootsuite.com/social-media-tools/username-generator
       $names[] = $keywords . $suffix;
     }
 
+    function random_username($string) {
+    $pattern = " ";
+    $firstPart = strstr(strtolower($string), $pattern, true);
+    $secondPart = substr(strstr(strtolower($string), $pattern, false), 0, 3);
+    $nrRand = rand(0, 100);
+
+    $username = $firstPart.$secondPart.$nrRand;
+    return $username;
+}
+
+
     echo "<h2>Generated Usernames:</h2><ul>";
     foreach ($names as $name) {
       echo "<li>" . htmlspecialchars($name) . "</li>";
     }
     echo "</ul>";
+    echo random_username($keywords);
   }
   ?>
 </body>

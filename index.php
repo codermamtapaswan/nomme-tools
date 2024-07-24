@@ -12,8 +12,8 @@
       <a href="05_podcast-name-generator.php" class="way-btn">Podcast Name Generator</a>
       <a href="06_username-generator.php" class="way-btn">Username Name Generator</a>
       <a href="07_instagram-username-generator.php" class="way-btn">Instagram Username Generator</a>
-      <a href="08_random-username-generator.php" class="way-btn">Random Username Generator</a>
-      <a href="09_reddit-username-generator.php" class="way-btn">Reddit Username Generator</a>
+      <a href="08_random-name-generator.php" class="way-btn">Random Username Generator</a>
+      <a href="09_reddit-name-generator.php" class="way-btn">Reddit Username Generator</a>
       <a href="10_snapchat-username-generator.php" class="way-btn">Snapchat Username Generator</a>
       <a href="11_tiktok-username-generator.php" class="way-btn">TikTok Username Generator</a>
       <a href="12_youtube-name-generator.php" class="way-btn">YouTube Name Generator</a>
@@ -29,9 +29,52 @@
 <?php include "footer.php"; ?>
 
 
-<!-- 
-
-Explain what a Brand Name Generator is. Provide some examples and list tools and generators for Business Name Generation. Also, include a step-by-step guide on how to create a Brand Name Generator using PHP. 
-
-
+<!-- https://www.datamuse.com/api/
+ https://github.com/nubs/random-name-generator?tab=readme-ov-file
+ https://stackoverflow.com/questions/35037149/generate-random-username-based-on-full-name-php
+ https://github.com/Speedysnail6/username-generator?tab=readme-ov-file
+ 
 -->
+<?php
+  // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  //   $keywords = htmlspecialchars($_POST['keywords']);
+  //   $extensions = ['.com', '.net', '.org', '.io', '.co'];
+  //   $names = [];
+  //   $prefixes = ['my', 'get', 'go', 'top', 'best'];
+  //   $suffixes = ['hub', 'zone', 'world', 'site', 'web'];
+
+  //   // Generate random string
+  //   function randomString($length = 4)
+  //   {
+  //     $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  //     $randomString = '';
+  //     for ($i = 0; $i < $length; $i++) {
+  //       $randomString .= $characters[rand(0, strlen($characters) - 1)];
+  //     }
+  //     return $randomString;
+  //   }
+
+  //   foreach ($extensions as $extension) {
+  //     // Add random string
+  //     $randomStr = randomString();
+  //     $names[] = strtolower(str_replace(' ', '', $keywords) . $randomStr . $extension);
+
+  //     // Add prefixes and suffixes
+  //     foreach ($prefixes as $prefix) {
+  //       $names[] = strtolower($prefix . str_replace(' ', '', $keywords) . $extension);
+  //     }
+  //     foreach ($suffixes as $suffix) {
+  //       $names[] = strtolower(str_replace(' ', '', $keywords) . $suffix . $extension);
+  //     }
+  //   }
+
+  //   // Remove duplicates
+  //   $names = array_unique($names);
+
+  //   echo "<h2>Generated Domain Names:</h2><ul>";
+  //   foreach ($names as $name) {
+  //     echo "<li>" . htmlspecialchars($name) . "</li>";
+  //   }
+  //   echo "</ul>";
+  // }
+  ?>
