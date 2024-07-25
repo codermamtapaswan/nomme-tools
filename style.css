@@ -2,3 +2,190 @@
   width: fit-content;
   margin: 10px;
 }
+
+.noome-tool-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.noome-tool-box .tag {
+  color: var(--primary-color);
+  background: #f2730114;
+  padding: 10px 30px;
+  border-radius: 50px;
+}
+
+.nomme-tool-title {
+  text-align: center;
+}
+
+.all-page .nomme-tool-title h1 {
+  font-size: clamp(1.5625rem, -0.6696rem + 5.9524vw, 4.6875rem);
+  ;
+  margin-bottom: 40px;
+}
+
+.all-page .nomme-tool-title p {
+  font-size: clamp(1rem, 0.5982rem + 1.0714vw, 1.5625rem);
+  line-height: 1.5;
+  margin-bottom: 0;
+  width: 70%;
+  margin: 0 auto;
+
+}
+
+.noome-tool-box form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  padding: 50px;
+  background: #023760;
+}
+
+.noome-tool-box input {
+  background: unset;
+  border-radius: 0 !important;
+  border: 1px solid #fff;
+  padding: 0 20px;
+  height: 40px;
+  color: #fff;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.noome-tool-box input::placeholder {
+  color: #fff;
+}
+
+.noome-tool-box .keyword {
+  width: 100%;
+}
+
+
+.noome-tool-box .way-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 25px;
+}
+
+.noome-tool-box .way-btn span {
+  font-size: 20px;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip:has(.keyword) {
+  width: 100%;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -9px;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cg stroke-width='0'/%3E%3Cg stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M18.334 10a8.334 8.334 0 1 1-16.668 0 8.334 8.334 0 0 1 16.668 0M10 6.458a.94.94 0 0 0-.938.938.626.626 0 0 1-1.25 0 2.188 2.188 0 1 1 3.756 1.524l-.22.222a6 6 0 0 0-.476.514c-.184.234-.248.408-.248.552v.626a.626.626 0 0 1-1.25 0v-.626c0-.546.254-.988.512-1.32.19-.244.43-.484.626-.678l.16-.162A.938.938 0 0 0 10 6.458m0 7.708a.834.834 0 1 0 0-1.666.834.834 0 0 0 0 1.666' fill='%23fff'/%3E%3C/svg%3E");
+  cursor: pointer;
+}
+
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  min-width: 350px;
+  background-color: #f27301;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 6px;
+  padding: .5rem;
+  position: absolute;
+  right: -10px;
+  bottom: 60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 6px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f27301 transparent transparent transparent;
+}
+
+.tooltip:hover:after .tooltiptext {
+  visibility: visible;
+}
+
+.row-gap {
+  row-gap: 30px;
+}
+
+.result {
+  text-align: center;
+  padding: 30px;
+  background: #ccc;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.result:hover {
+  color: #fff;
+  background: var(--primary-color);
+}
+
+@media (max-width:600px) {
+  .noome-tool-box {
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  .all-page .nomme-tool-title h1 {
+    margin-bottom: 20px;
+  }
+
+  .all-page .nomme-tool-title p {
+    width: 100%;
+  }
+
+  .tooltip .tooltiptext {
+    width: fit-content;
+    min-width: 350px;
+  }
+
+  .noome-tool-box form {
+    display: grid;
+    padding: 20px;
+    justify-content: unset;
+
+  }
+
+  .noome-tool-box .tooltip,
+  .noome-tool-box form input {
+    width: 100%;
+  }
+
+  .noome-tool-box .way-btn {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
