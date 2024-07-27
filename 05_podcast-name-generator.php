@@ -4,46 +4,30 @@ require_once "noome-tools.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve and sanitize input
-  $keyword = $_POST['keyword'];
-  $limit = filter_var($_POST['number'], FILTER_VALIDATE_INT, ["options" => ["min_range" => 1, "max_range" => 50]]);
+  $keyword = sanitize_input($_POST['keyword'] ?? '');
+  $limit = filter_var($_POST['number'] ?? 1, FILTER_VALIDATE_INT);
 
   // Validate inputs
   if ($keyword && $limit !== false) {
-    $components = buildName('Podcast');
-    $adjectives = $components['adjective'];
-    $suffix = $components['suffix'];
-    $prefixes = $components['prefix'];
+    if ($limit >= 1 && $limit <= 50) {
+      // Generate the names
+      $generatedNames = uniqueNameSet("podcast", $keyword);
 
-    // Initialize an array to hold generated names
-    $generatedNames = [];
+      if (!empty($generatedNames)) {
+        // Limit the number of generated names to the specified limit
+        $generatedNames = array_slice($generatedNames, 0, $limit);
 
-    // Generate names based on the keyword and components
-    $generatedNames[] = strtolower(str_replace(' ', '', $keyword . $suffix));
-    $generatedNames[] = strtolower(str_replace(' ', '', $adjectives . $keyword));
-    $generatedNames[] = strtolower(str_replace(' ', '', $prefixes . $keyword));
-
-    // Generate additional names using an API or predefined words
-    $apiWords = generateApiWords($keyword);
-    foreach ($apiWords as $type => $words) {
-      foreach ($words as $word) {
-        // Combine API words with the keyword and other components
-        $generatedNames[] = strtolower($adjectives . " " . $keyword . " " . $suffix);
-        $generatedNames[] = strtolower($prefixes . " " . $keyword . " " . $suffix);
-        $generatedNames[] = strtolower($keyword . " " . $word);
+        // Store the generated names for displaying in HTML
+        $generatedNames = array_map('htmlspecialchars', $generatedNames);
       }
+    } else {
+      $message = "Please enter a number between 1 and 50.";
     }
-    // Limit the number of generated names to the specified limit
-    $generatedNames = array_slice($generatedNames, 0, $limit);
-
-    // Store the generated names for displaying in HTML
-    $generatedNames = array_map('htmlspecialchars', $generatedNames);
   } else {
-    $message =  "Please enter a valid keyword and number between 1 and 50.";
+    $message = "Please enter a valid keyword and number.";
   }
 }
 ?>
-
-
 
 <?php include "header.php"; ?>
 
@@ -109,45 +93,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <?php include "footer.php"; ?>
-
-<!-- <body>
-  <h1>Podcast Name Generator</h1>
-  <form method="post" action="">
-    <label for="keywords">Enter Keywords:</label>
-    <input type="text" name="keywords" id="keywords" required>
-    <br>
-    <input type="submit" value="Generate Names">
-  </form>
-
-  <?php
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $keywords = htmlspecialchars($_POST['keywords']);
-    $suffixes = [
-      'Show', 'Cast', 'Talk', 'Series', 'Chronicles',        'Spreading', 'Today', 'Pioneers', 'ArtOf', 'Insights', 'Wallet', 'ScienceOf',
-      'Storyof', 'Unplugged', 'MastersIn', 'Missing', 'Unveiled', 'Planet', 'Progress',
-      'Matter', 'PowerOf', 'Frontier', 'Transforming', 'Mastering', 'Less', 'JourneyTo',
-      'Deciphered', 'Nuggets', 'HeartOf', 'Revolution', 'FutureOf', 'EvolutionOfHustle',
-      'PathTo', 'Indepth', 'Unscripted', 'Excellence', 'Method', 'Unpacking', 'PioneersIn',
-      'BestIn', 'ThisWeekIn', 'Mastery', 'Adventures', 'Center', 'Thedaily', 'SchoolOf',
-      'Being', 'RiseOf', 'GeniusOf', 'Hidden', 'RoadTo', 'Empowerment', 'Innovation',
-      'Breakthrough', 'Perspective', 'Reality', 'Extra', 'BakingA', 'MastersOf', 'SecretsOf',
-      'Decoded', 'OffClock', 'Layer', 'Silver', 'Over', 'OneLast', 'Odyssey', 'Visionaries',
-      'KeysTo', 'Matters', 'Unfolded', 'Horizons', 'MindsetOf', 'Innovating', 'MyFavorite',
-      'Focus', 'Daily', 'VisionOf', 'Thoughtson', 'Exploring', 'Up', 'Self', 'WorldOf',
-      'Spirit', 'Radio', 'Resources', 'Talks', 'Money', 'Engine', 'Weekly'
-    ];
-    $names = [];
-
-    foreach ($suffixes as $suffix) {
-      $names[] = $keywords . ' ' . $suffix;
-      $names[] = $$suffix . ' ' . $keywords;
-    }
-
-    echo "<h2>Generated Podcast Names:</h2><ul>";
-    foreach ($names as $name) {
-      echo "<li>" . htmlspecialchars($name) . "</li>";
-    }
-    echo "</ul>";
-  }
-  ?>
-</body> -->

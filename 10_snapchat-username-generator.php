@@ -4,43 +4,30 @@ require_once "noome-tools.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve and sanitize input
-  $keyword = $_POST['keyword'];
-  $limit = filter_var($_POST['number'], FILTER_VALIDATE_INT, ["options" => ["min_range" => 1, "max_range" => 50]]);
+  $keyword = sanitize_input($_POST['keyword'] ?? '');
+  $limit = filter_var($_POST['number'] ?? 1, FILTER_VALIDATE_INT);
 
   // Validate inputs
   if ($keyword && $limit !== false) {
-    $components = buildName('Snapchat');
-    $adjectives = $components['adjective'];
-    $suffix = $components['suffix'];
-    $prefixes = $components['prefix'];
+    if ($limit >= 1 && $limit <= 50) {
+      // Generate the names
+      $generatedNames = uniqueNameSet("snapchat", $keyword);
 
-    // Initialize an array to hold generated names
-    $generatedNames = [];
+      if (!empty($generatedNames)) {
+        // Limit the number of generated names to the specified limit
+        $generatedNames = array_slice($generatedNames, 0, $limit);
 
-    // Generate names based on the keyword and components
-    $generatedNames[] = strtolower(str_replace(' ', '', $keyword . $suffix));
-    $generatedNames[] = strtolower(str_replace(' ', '', $adjectives . $keyword));
-    $generatedNames[] = strtolower(str_replace(' ', '', $prefixes . $keyword));
-
-    // Generate additional names using an API or predefined words
-    $apiWords = generateApiWords($keyword);
-    foreach ($apiWords as $type => $words) {
-      foreach ($words as $word) {
-        // Combine API words with the keyword and other components
-        $generatedNames[] = strtolower($adjectives . " " . $keyword . " " . $suffix);
-        $generatedNames[] = strtolower($prefixes . " " . $keyword . " " . $suffix);
-        $generatedNames[] = strtolower($keyword . " " . $word);
+        // Store the generated names for displaying in HTML
+        $generatedNames = array_map('htmlspecialchars', $generatedNames);
       }
+    } else {
+      $message = "Please enter a number between 1 and 50.";
     }
-    // Limit the number of generated names to the specified limit
-    $generatedNames = array_slice($generatedNames, 0, $limit);
-
-    // Store the generated names for displaying in HTML
-    $generatedNames = array_map('htmlspecialchars', $generatedNames);
   } else {
-    $message =  "Please enter a valid keyword and number between 1 and 50.";
+    $message = "Please enter a valid keyword and number.";
   }
 }
+
 ?>
 
 
