@@ -35,9 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">Username</div>
+
       <div class="nomme-tool-title">
-        <h1>Username Generator</h1>
+        <h1>Username <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Username stand out from the competition.</p>
       </div>
 

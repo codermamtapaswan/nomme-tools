@@ -36,9 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">Random Name</div>
+
       <div class="nomme-tool-title">
-        <h1>Random Name Generator</h1>
+        <h1>Random Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Random stand out from the competition.</p>
       </div>
 

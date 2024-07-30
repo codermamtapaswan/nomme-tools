@@ -34,9 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">Product Name</div>
       <div class="nomme-tool-title">
-        <h1>Product Name Generator</h1>
+        <h1>Product Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Product stand out from the competition.</p>
       </div>
 

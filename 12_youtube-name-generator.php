@@ -35,9 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">YouTube Name</div>
       <div class="nomme-tool-title">
-        <h1>YouTube Name Generator</h1>
+        <h1>YouTube Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your YouTube stand out from the competition.</p>
       </div>
 

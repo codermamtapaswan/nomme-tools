@@ -33,9 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">Podcast Name</div>
-      <div class="nomme-tool-title">
-        <h1>Podcast Name Generator</h1>
+      \ <div class="nomme-tool-title">
+        <h1>Podcast Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Podcast stand out from the competition.</p>
       </div>
 

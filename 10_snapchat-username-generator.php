@@ -36,9 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">Snapchat Name</div>
       <div class="nomme-tool-title">
-        <h1>Snapchat Name Generator</h1>
+        <h1>Snapchat Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Snapchat stand out from the competition.</p>
       </div>
 

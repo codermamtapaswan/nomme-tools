@@ -35,9 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      <div class="tag">Gamertag Name</div>
       <div class="nomme-tool-title">
-        <h1>Gamertag Name Generator</h1>
+        <h1>Gamertag Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Gamertag stand out from the competition.</p>
       </div>
 

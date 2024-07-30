@@ -37,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- tools container  Start-->
         <div class="noome-tool-box">
-            <div class="tag">Domain Name</div>
             <div class="nomme-tool-title">
-                <h1>Domain Name Generator</h1>
+                <h1>Domain Name <span>Generator</span></h1>
                 <p>Get a unique and memorable name that will make your Domain stand out from the competition.</p>
             </div>
 
