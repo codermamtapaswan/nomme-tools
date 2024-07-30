@@ -193,8 +193,6 @@ function iterate($array, $callback)
 }
 
 
-
-
 function uniqueNameSet($type, $keyword)
 {
   $components = buildName($type);
