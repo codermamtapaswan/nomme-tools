@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- tools container  Start-->
     <div class="noome-tool-box">
       <div class="nomme-tool-title">
-        <h1>Roblox Name Generator</h1>
+        <h1>Roblox Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Roblox stand out from the competition.</p>
       </div>
 
@@ -53,29 +53,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </form>
     </div>
-
-    <div class="row row-gap generated-result">
-
-      <?php if (isset($generatedNames)) : foreach ($generatedNames as $name) : ?>
-          <div class="col-lg-3 col-md-6">
-            <div class="result">
-              <?php echo $name; ?>
+    <?php if (isset($generatedNames)) : ?>
+      <div class="generated-result">
+        <div class="row row-gap justify-content-center">
+          <?php foreach ($generatedNames as $name) : ?>
+            <div class="col-lg-3 col-md-6">
+              <div class="result">
+                <?php echo $name; ?>
+              </div>
             </div>
-          </div>
-        <?php endforeach;
-      else : if (isset($message)) { ?>
-          <div class="col-lg-12">
-            <div class="result">
-              <?php echo $message; ?>
+          <?php endforeach;
+        else : if (isset($message)) { ?>
+            <div class="col-lg-12">
+              <div class="error">
+                <?php echo $message; ?>
+              </div>
             </div>
-          </div>
-      <?php  }
-      endif; ?>
-    </div>
+          <?php  } ?>
+
+        </div>
+      </div>
+    <?php endif; ?>
 
     <!-- tool container End  -->
 
 
   </div>
-
-  <?php include "footer.php"; ?>
+</div>
+<?php include "footer.php"; ?>

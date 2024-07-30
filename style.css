@@ -12,143 +12,91 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 50px;
-  width: 100%;
+  gap: 40px;
   padding: 40px 0;
-}
-
-.noome-tool-box .tag {
-  color: var(--primary-color);
-  background: #f2730114;
-  padding: 10px 30px;
-  border-radius: 50px;
 }
 
 .nomme-tool-title {
   text-align: center;
 }
 
-.all-page .nomme-tool-title h1 {
-  font-size: clamp(1.5625rem, -0.6696rem + 5.9524vw, 4.6875rem);
-  ;
-  margin-bottom: 40px;
+.nomme-tool-title h1 {
+  margin-bottom: 20px;
+  font-size: 50px;
 }
 
-.all-page .nomme-tool-title p {
-  font-size: clamp(1rem, 0.5982rem + 1.0714vw, 1.5625rem);
-  line-height: 1.5;
-  margin-bottom: 0;
-  width: 70%;
+.nomme-tool-title p {
+  font-size: 20px;
+  width: 80%;
   margin: 0 auto;
+  line-height: 1.5;
+}
 
+.nomme-tool-title h1 span {
+  background: -webkit-linear-gradient(91.01deg,
+      rgba(250, 132, 26, 1) 0%,
+      rgba(0, 86, 152, 1) 48.500001430511475%,
+      rgba(250, 132, 26, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .noome-tool-box form {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 20px;
-  padding: 50px;
-  background: #023760;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+  gap: 10px;
+  border: 1px solid #023760;
+  border-radius: 4px;
+  padding: 2px;
+  background: #fff;
 }
 
-.noome-tool-box input {
-  background: unset;
-  border-radius: 0 !important;
-  border: 1px solid #fff;
-  padding: 0 20px;
+.noome-tool-box input,
+.noome-tool-box input:focus,
+.noome-tool-box input:active {
+  background: #fff;
+  width: 100%;
   height: 40px;
-  color: #fff;
+  border: none;
+  padding: 0 10px;
 }
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-
-.noome-tool-box input::placeholder {
-  color: #fff;
-}
-
-.noome-tool-box .keyword {
-  width: 100%;
-}
-
 
 .noome-tool-box .way-btn {
   display: flex;
   align-items: center;
   gap: 15px;
   padding: 10px 25px;
+  background: #023760;
+  border-radius: 4px;
 }
 
 .noome-tool-box .way-btn span {
   font-size: 20px;
 }
 
-.tooltip {
-  position: relative;
-}
-
-.tooltip:has(.keyword) {
-  width: 100%;
-}
-
-.tooltip .tooltip-icon {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  cursor: pointer;
-  transition: all .3s;
-}
-
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 300px;
-  min-width: 350px;
-  background-color: #f27301;
-  color: #fff;
-  font-size: 12px;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 6px;
-  padding: .5rem;
-  position: absolute;
-  right: -10px;
-  bottom: 60px;
-}
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 6px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #f27301 transparent transparent transparent;
-}
-
-.tooltip-icon:hover+.tooltiptext {
-  visibility: visible;
+.generated-result {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px;
 }
 
 .row-gap {
   row-gap: 30px;
 }
 
-.result {
+.result,
+.error {
   text-align: center;
-  padding: 30px;
-  background: #ccc;
+  padding: 10px;
+  background: #cccccc38;
   border-radius: 4px;
   font-size: 20px;
   height: 100%;
 }
+
 
 .result:hover {
   color: #fff;
@@ -156,38 +104,23 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width:600px) {
-  .noome-tool-box {
-    gap: 30px;
-    padding: 20px 0;
+  .nomme-tool-title h1 {
+    font-size: 34px;
   }
 
-  .all-page .nomme-tool-title h1 {
-    margin-bottom: 20px;
-  }
-
-  .all-page .nomme-tool-title p {
+  .nomme-tool-title p {
     width: 100%;
-  }
-
-  .tooltip .tooltiptext {
-    width: fit-content;
-    min-width: 350px;
   }
 
   .noome-tool-box form {
-    display: grid;
-    padding: 20px;
-    justify-content: unset;
-
-  }
-
-  .noome-tool-box .tooltip,
-  .noome-tool-box form input {
+    display: inline-block;
     width: 100%;
+    border: unset;
+    background: transparent;
   }
 
   .noome-tool-box .way-btn {
-    width: fit-content;
-    margin: 0 auto;
+    justify-content: center;
+    margin: 15px auto 0 auto;
   }
 }
