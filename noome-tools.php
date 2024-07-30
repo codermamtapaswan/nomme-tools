@@ -1047,28 +1047,27 @@ function buildName($type)
         "yucky",
         "zany",
         "zealous"
-      ];
-      ;
+      ];;
       break;
     case 'youtube':
-      $prefixes = ['Tube', 'Vid', 'Stream'];
-      $suffixes = ['Channel', 'Vids', 'Streams'];
+      $prefixes = ['Tube', 'Vid', 'Stream', 'The', 'ExploreWith', 'Unique', 'Creative', 'Trendy'];
+      $suffixes = ['Channel', 'Vids', 'Streams', 'Vibes', 'Quest', 'Show', 'Mania', 'InMotion', 'Magic', 'Unplugged', 'Chronicles', 'Diaries', 'Journey', 'Sphere'];
       $adjectives = ['Amazing', 'Popular', 'Entertaining'];
       break;
     case 'gaming':
-      $prefixes = ['Game', 'Play', 'Fun'];
-      $suffixes = ['Arena', 'Zone', 'World'];
+      $prefixes = ['Game', 'Play', 'Fun', 'Shadow', 'TheReal', 'Cosmic', 'Mystic', 'Cyber', 'Super', 'Shadow', 'Epic', 'Dark', 'Ultimate', 'Mystic', 'Vengeful', 'Cosmic'];
+      $suffixes = ['Arena', 'Zone', 'World', 'Warrior', 'GamingQueen', 'NinjaX', 'Fury', 'PlaysGames', 'Phoenix', 'GamerGirl', 'Thunder', 'TheConqueror', 'TheWarrior', 'TheLegend', 'Echo', 'Rider', 'Knight', 'GalacticHero', 'RogueNinja', 'Stormbringer', 'FuryBlaze'];
       $adjectives = ['Epic', 'Legendary', 'Exciting'];
       break;
     case 'gamertag':
-      $prefixes = ['Gamer', 'Tag', 'Alias'];
-      $suffixes = ['Warrior', 'Ninja', 'Knight'];
-      $adjectives = ['Fierce', 'Bold', 'Brave'];
+      $prefixes = ['Gamer', 'Tag', 'Alias', 'Elite', 'Shadow', 'Legend', 'Xtreme', 'Phantom'];
+      $suffixes = ['Warrior', 'Ninja', 'Knight', 'Sage', 'Viper', 'Hunter', 'Dragon', 'Champion'];
+      $adjectives = ['Fierce', 'Bold', 'Brave', 'Savage', 'Stealthy', 'Dominant', 'Invincible', 'Relentless'];
       break;
     case 'roblox':
-      $prefixes = ['Blox', 'Rob', 'Build'];
-      $suffixes = ['Master', 'Builder', 'King'];
-      $adjectives = ['Creative', 'Imaginative', 'Crafty'];
+      $prefixes = ['Blox', 'Rob', 'Build', 'Pixel', 'Robo', 'Mega', 'Craft', 'Voxel'];
+      $suffixes = ['Master', 'Builder', 'King', 'Lord', 'Hero', 'Champion', 'Guru', 'Mastermind'];
+      $adjectives = ['Creative', 'Imaginative', 'Crafty', 'Epic', 'Inventive', 'Legendary', 'Dynamic', 'Versatile'];
       break;
     default:
       return 'Invalid type provided.';
@@ -1115,26 +1114,63 @@ function generateApiWords($word)
 }
 
 
+// function random_username($string)
+// {
+//   // Remove any non-alphanumeric characters from the input string
+//   $cleanString = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($string));
 
+//   // Limit the length of the cleaned string to avoid too long usernames
+//   $firstPart = substr($cleanString, 0, 5);
 
+//   // Generate a random alphanumeric string
+//   $randomPart = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 5);
 
+//   // Combine the cleaned part with the random part
+//   $username = $firstPart . $randomPart;
 
+//   return $username;
+// }
 
-function random_username($string)
+function random_username_generator($keyword, $platform)
 {
-  // Remove any non-alphanumeric characters from the input string
-  $cleanString = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($string));
+  $url = "https://api.randomgenerate.io/stream/ai";
+  $params = array(
+    "user_prompt" => $keyword,
+    "platform" => $platform,
+    "allow_special_char" => "true"
+  );
 
-  // Limit the length of the cleaned string to avoid too long usernames
-  $firstPart = substr($cleanString, 0, 5);
+  $query = http_build_query($params);
+  $finalUrl = $url . "?" . $query;
 
-  // Generate a random alphanumeric string
-  $randomPart = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 5);
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $finalUrl);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-  // Combine the cleaned part with the random part
-  $username = $firstPart . $randomPart;
+  $response = curl_exec($ch);
+  if ($response === false) {
+    return ["Error" => curl_error($ch)];
+  } else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($httpCode == 200) {
+      $lines = explode("\n", $response);
+      $usernames = [];
 
-  return $username;
+      foreach ($lines as $line) {
+        if (strpos($line, "data: ") === 0) {
+          $jsonData = substr($line, 6);
+          $data = json_decode($jsonData, true);
+          if ($data !== null && isset($data['content'])) {
+            $usernames[] = $data['content'];
+          }
+        }
+      }
+
+      return $usernames;
+    } else {
+      return ["Error" => "HTTP status code " . $httpCode];
+    }
+  }
 }
 
 
@@ -1169,103 +1205,61 @@ function uniqueNameSet($type, $keyword)
 
   // Generate names based on the keyword and components
   switch ($type) {
-    case 'domain':
+    case 'podcast':
+      $generatedNames = array_merge(
+        iterate($similar_meaning, fn ($word) => ucfirst($word)),
+        iterate($api_adjectives, fn ($adjective) => ucfirst($adjective . " " . $keyword)),
+        iterate($suffixes, fn ($suffix) => ucfirst($keyword . " " . $suffix)),
+        iterate($adjectives, fn ($adjective) => ucfirst($adjective . " " . $keyword)),
+        iterate($prefixes, fn ($prefix) => ucfirst($prefix . " " . $keyword))
+      );
+      break;
 
+    case 'domain':
       foreach ($similar_meaning as $word) {
         foreach ($extensions as $extension) {
           $generatedNames[] = strtolower($word . $extension);
         }
       }
-
       foreach ($api_adjectives as $adjective) {
         foreach ($extensions as $extension) {
           $generatedNames[] = strtolower($adjective . "-" . $keyword . $extension);
         }
       }
-
       foreach ($suffixes as $suffix) {
         foreach ($extensions as $extension) {
           $generatedNames[] = strtolower($keyword . $suffix . $extension);
           $generatedNames[] = strtolower($suffix . $keyword . $extension);
         }
       }
-
-      break;
-    case 'podcast':
-      $generatedNames = array_merge(
-        iterate($similar_meaning, fn($word) => ucfirst($word)),
-        iterate($api_adjectives, fn($adjective) => ucfirst($adjective . " " . $keyword)),
-
-        iterate($suffixes, fn($suffix) => ucfirst($keyword . " " . $suffix)),
-        iterate($adjectives, fn($adjective) => ucfirst($adjective . " " . $keyword)),
-        iterate($prefixes, fn($prefix) => ucfirst($prefix . " " . $keyword)),
-
-        iterate($sound_like, fn($word) => ucfirst($word . " " . $keyword)),
-        iterate($nouns, fn($noun) => ucfirst($keyword . " " . $noun)),
-        iterate($triggered_by, fn($word) => ucfirst($word . " " . $keyword)),
-        iterate($suggestions, fn($suggestion) => ucfirst($keyword . " " . $suggestion))
-      );
       break;
 
-    case 'username':
 
-      $i = 0;
-      $numberOfUsernames = 15;
-      while ($i < $numberOfUsernames) {
-        $generatedNames[] = strtolower(random_username($keyword));
-        $i++;
-      }
-      // $generatedNames = array_merge(
-      //   iterate($api_adjectives, fn($adjective) => ucfirst($adjective . "_" . $keyword)),
-      //   iterate($adjectives, fn($adjective) => ucfirst($adjective . "_" . $keyword)),
-      // );
-
-      break;
-
-    case 'instragarm':
-      $i = 0;
-      $numberOfUsernames = 15;
-      while ($i < $numberOfUsernames) {
-        $generatedNames[] = strtolower(random_username($keyword));
-        $i++;
-      }
-      // $generatedNames = array_merge(
-      //   iterate($api_adjectives, fn($adjective) => ucfirst($adjective . "_" . $keyword)),
-      //   iterate($adjectives, fn($adjective) => ucfirst($adjective . "_" . $keyword)),
-      // );
-      break;
-
+    case 'instagram':
     case 'random':
-      
-      // $i = 0;
-      // $numberOfUsernames = 15;
-      // while ($i < $numberOfUsernames) {
-      //   $generatedNames[] = strtolower(random_username($keyword));
-      //   $i++;
-      // }
-      // $generatedNames = array_merge(
-      //   iterate($api_adjectives, fn($adjective) => ucfirst($adjective . "_" . $keyword)),
-      //   iterate($adjectives, fn($adjective) => ucfirst($adjective . "_" . $keyword)),
-      // );
+    case 'reddit':
+    case 'snapchat':
+    case 'tiktok':
+    case 'username':
+    case 'youtube':
+    case 'gaming':
+    case 'gamertag':
+    case 'roblox':
+      $generatedNames = array_merge($generatedNames, random_username_generator($keyword, $type));
       break;
-
 
     default:
       $generatedNames = array_merge(
-
-        iterate($similar_meaning, fn($word) => ucfirst($keyword . " " . $word)),
-        iterate($api_adjectives, fn($adjective) => ucfirst($adjective . " " . $keyword)),
-
-        iterate($suffixes, fn($suffix) => ucfirst($keyword . " " . $suffix)),
-        iterate($adjectives, fn($adjective) => ucfirst($adjective . " " . $keyword)),
-        iterate($prefixes, fn($prefix) => ucfirst($prefix . " " . $keyword)),
-
-        iterate($sound_like, fn($word) => ucfirst($word . " " . $keyword)),
-        iterate($nouns, fn($noun) => ucfirst($keyword . " " . $noun)),
-        iterate($triggered_by, fn($word) => ucfirst($word . " " . $keyword)),
-        iterate($suggestions, fn($suggestion) => ucfirst($keyword . " " . $suggestion))
+        iterate($similar_meaning, fn ($word) => ucfirst($keyword . " " . $word)),
+        iterate($api_adjectives, fn ($adjective) => ucfirst($adjective . " " . $keyword)),
+        iterate($suffixes, fn ($suffix) => ucfirst($keyword . " " . $suffix)),
+        iterate($adjectives, fn ($adjective) => ucfirst($adjective . " " . $keyword)),
+        iterate($prefixes, fn ($prefix) => ucfirst($prefix . " " . $keyword)),
+        iterate($sound_like, fn ($word) => ucfirst($word . " " . $keyword)),
+        iterate($nouns, fn ($noun) => ucfirst($keyword . " " . $noun)),
+        iterate($triggered_by, fn ($word) => ucfirst($word . " " . $keyword)),
+        iterate($suggestions, fn ($suggestion) => ucfirst($keyword . " " . $suggestion))
       );
-      break;
   }
 
   return $generatedNames;
@@ -1273,14 +1267,6 @@ function uniqueNameSet($type, $keyword)
 
 
 
-function generateApi($word,$platform)
-{
-  $base_url = "https://api.randomgenerate.io/stream/ai?user_prompt=$word&platform=$platform&allow_special_char=true";
-   
-  $username = json_decode($base_url);
-
-  return $username;
-}
 
 //  https://usernamegenerator.io/snapchat-username-ideas
 
@@ -1290,9 +1276,3 @@ function generateApi($word,$platform)
 // https://api.randomgenerate.io/stream/ai?user_prompt=$name&count=15&platform=instagram&allow_special_char=true&important_keyword=freedom&gender=female&style=Aesthetic,Professional&lucky_number=1&prefix=sassy&suffix=nova&min_length=1&max_length=30 -->
 
 // // Print the generated names
-
-
-// print_r(generateApi("mamta","instagram"));
-// print_r(generateApi("mamta","instagram"));
-
-
