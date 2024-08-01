@@ -56,8 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </button>
       </form>
 
-
-
     </div>
 
     <?php if (isset($generatedNames)) : ?>
@@ -69,23 +67,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php echo $name; ?>
               </div>
             </div>
-          <?php endforeach;
-        else : if (isset($message)) { ?>
-            <div class="col-lg-12">
-              <div class="error">
-                <?php echo $message; ?>
-              </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    <?php elseif (isset($message)) : ?>
+      <div class="generated-result">
+        <div class="row row-gap justify-content-center">
+          <div class="col-lg-12">
+            <div class="error">
+              <?php echo $message; ?>
             </div>
-          <?php  } ?>
-
+          </div>
         </div>
       </div>
     <?php endif; ?>
     <!-- tool container End  -->
 
-
   </div>
 </div>
+
+
+
 
 <?php include "footer.php"; ?>
 

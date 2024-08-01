@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- tools container  Start-->
     <div class="noome-tool-box">
-      \ <div class="nomme-tool-title">
+      <div class="nomme-tool-title">
         <h1>Podcast Name <span>Generator</span></h1>
         <p>Get a unique and memorable name that will make your Podcast stand out from the competition.</p>
       </div>
@@ -63,15 +63,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php echo $name; ?>
               </div>
             </div>
-          <?php endforeach;
-        else : if (isset($message)) { ?>
-            <div class="col-lg-12">
-              <div class="error">
-                <?php echo $message; ?>
-              </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    <?php elseif (isset($message)) : ?>
+      <div class="generated-result">
+        <div class="row row-gap justify-content-center">
+          <div class="col-lg-12">
+            <div class="error">
+              <?php echo $message; ?>
             </div>
-          <?php  } ?>
-
+          </div>
         </div>
       </div>
     <?php endif; ?>
