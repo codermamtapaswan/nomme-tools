@@ -1136,6 +1136,7 @@ function random_username_generator($keyword, $platform)
   $url = "https://api.randomgenerate.io/stream/ai";
   $params = array(
     "user_prompt" => $keyword,
+    "count" => 28,
     "platform" => $platform,
     "allow_special_char" => "true"
   );
@@ -1273,6 +1274,12 @@ function uniqueNameSet($type, $keyword)
 
 //  https://api.randomgenerate.io/stream/business_names/ai?industry=Technology&character_limit=20&style=Brandable%20names%20-%20Zendesk,%20Spotify&keywords=getassist&competitors=competitor1,competitor2&prefix=tech-&suffix=-fy&count=30
 
+// https://api.randomgenerate.io/stream/business_names/ai?keywords=getassist&count=30
+
 // https://api.randomgenerate.io/stream/ai?user_prompt=$name&count=15&platform=instagram&allow_special_char=true&important_keyword=freedom&gender=female&style=Aesthetic,Professional&lucky_number=1&prefix=sassy&suffix=nova&min_length=1&max_length=30 -->
+
+// https://api.randomgenerate.io/stream/business_names/ai?industry=Podcast%20Names&character_limit=20&style=Brandable%20names%20-%20Zendesk,%20Spotify&count=30
+
+// https://api.randomgenerate.io/stream/business_names/ai?industry=Generic%20Brand&character_limit=20&style=Brandable%20names%20-%20Zendesk,%20Spotify&count=30
 
 // // Print the generated names
