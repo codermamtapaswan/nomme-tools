@@ -157,7 +157,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nomme-tool-bg page-template-default page page-id-57 wp-custom-logo">
+<!-- <body class="nomme-tool-bg page-template-default page page-id-57 wp-custom-logo"></body> -->
+<body class="page-template-default page page-id-57 wp-custom-logo">
   <header>
     <div class="container">
       <div class="head-main">
