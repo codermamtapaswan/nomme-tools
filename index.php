@@ -5,7 +5,7 @@
     <h1 class="text-center">Nomme Tools</h1>
 
     <div class=" mt-5 row justify-content-center align-items-center text-center nomme-tool ">
-      <a href="01_business-name-generator.php" class="way-btn">Business Name Generator</a>
+    <a href="01_business-name-generator.php" class="way-btn">Business Name Generator</a>
       <a href="02_brand-name-generator.php" class="way-btn">Brand Name Generator</a>
       <a href="03_domain-name-generator.php" class="way-btn">Domain Name Generator</a>
       <a href="04_product-name-generator.php" class="way-btn">Product Name Generator</a>
