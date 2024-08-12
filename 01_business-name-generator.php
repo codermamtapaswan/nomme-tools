@@ -172,3 +172,17 @@ https://www.google.com/search?q=github+repo+for+synonoms+in+php&rlz=1C1RXQR_enIN
 
 https://www.thesaurus.com/browse/repository
 -->
+
+
+<!-- 
+$.ajax({
+url: "https://www.cleanersuite.com/battersea/battersea/admin/battereseacontact.php",
+type: "POST",
+data: new FormData(this),
+contentType: false,
+cache: false,
+processData:false,
+success: function(data){
+location.replace("https://www.batterseawebexpert.com/thank-you/");
+}
+}); -->

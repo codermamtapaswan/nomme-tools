@@ -20,7 +20,6 @@
       <a href="13_gaming-name-generator.php" class="way-btn">Gaming Name Generator</a>
       <a href="14_gamertag-generator.php" class="way-btn">Gamertag Generator</a>
       <a href="15_roblox-username-generator.php" class="way-btn">Roblox Username Generator</a>
-
     </div>
 
   </div>
